@@ -1,25 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../CSS/Reserva.css";
+
 
 const Reserva = () => {
   const navigate = useNavigate();
+  const [fecha, setFecha] = useState("");
+  const [hora, setHora] = useState("");
 
-  const handleCheckTables = (e) => {
+  useEffect(() => {
+    const usuarioId = localStorage.getItem("usuarioId");
+    if (!usuarioId) {
+      alert("No puedes acceder sin haber iniciado sesión.");
+      navigate("/login");
+    }
+  }, [navigate]);  
+
+  const handleCheckTables = async (e) => {
     e.preventDefault();
-    navigate("/tables");
+
+    try {
+      const response = await fetch(`https://hambre-no-encontrada.ct.ws/api/mesas_disponibles.php?fecha=${fecha}&hora=${hora}`);
+      const data = await response.json();
+
+      if (data.success && Array.isArray(data.mesas)) {
+        navigate("/tables", { state: { mesas: data.mesas, fecha, hora } });
+      } else {
+        alert(data.error || "No hay mesas disponibles.");
+      }
+    } catch (error) {
+      console.error("Error al consultar mesas:", error);
+      alert("Error al consultar mesas disponibles.");
+    }
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-50 px-4">
-      <form onSubmit={handleCheckTables} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-xl font-bold text-purple-800 mb-4 text-center">Reserva tu Mesa</h2>
-        <label className="block mb-2 text-gray-700">Fecha</label>
-        <input type="date" className="mb-4 p-2 border rounded w-full" required />
-        <label className="block mb-2 text-gray-700">Hora</label>
-        <input type="time" className="mb-6 p-2 border rounded w-full" required />
-        <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded w-full">
-          Buscar Mesas
-        </button>
+    <div className="reserva-background">
+      <form onSubmit={handleCheckTables} className="reserva-form">
+        <h2 className="reserva-title">Reserva tu Mesa</h2>
+
+        <label className="reserva-label">Fecha</label>
+        <input
+          type="date"
+          className="reserva-input"
+          required
+          value={fecha}
+          onChange={(e) => setFecha(e.target.value)}
+        />
+
+        <label className="reserva-label">Hora</label>
+        <input
+          type="time"
+          className="reserva-input"
+          required
+          value={hora}
+          onChange={(e) => setHora(e.target.value)}
+        />
+
+        <button className="reserva-button">Buscar Mesas</button>
       </form>
     </div>
   );

@@ -1,26 +1,76 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import '../CSS/Register.css';
 
 const Register = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    navigate("/login");
+
+    if (password !== confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://hambre-no-encontrada.ct.ws/api/register.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ correo: email, contrasena: password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Registro exitoso. Ahora puedes iniciar sesión.");
+        navigate("/login");
+      } else {
+        alert("Error al registrar: " + data.error);
+      }
+    } catch (error) {
+      alert("Error al conectar con el servidor.");
+      console.error("Error en registro:", error);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <form onSubmit={handleRegister} className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-sm">
-        <h2 className="text-2xl font-semibold mb-6 text-center text-green-700">Crear Cuenta</h2>
-        <input type="text" placeholder="Nombre" className="mb-3 px-3 py-2 border rounded w-full" required />
-        <input type="email" placeholder="Correo electrónico" className="mb-3 px-3 py-2 border rounded w-full" required />
-        <input type="tel" placeholder="Teléfono" className="mb-3 px-3 py-2 border rounded w-full" required />
-        <input type="password" placeholder="Contraseña" className="mb-5 px-3 py-2 border rounded w-full" required />
-        <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">
-          Registrarse
-        </button>
-      </form>
+    <div className="register-background">
+      <div className="register-container">
+        <form onSubmit={handleRegister} className="register-form">
+          <h2>Crear Cuenta</h2>
+          <input
+            type="email"
+            placeholder="Correo electrónico"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirmar contraseña"
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button type="submit">Registrarse</button>
+          <Link to="/login" className="login-button">
+            ¿Ya tienes una cuenta?
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };

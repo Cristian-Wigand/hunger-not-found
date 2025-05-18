@@ -1,0 +1,44 @@
+.home {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('/src/IMG/home.jpg');
+  }
+  .home h1 {
+    font-size: 4rem;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow:
+      -1px -1px 0 black,
+       1px -1px 0 black,
+      -1px  1px 0 black,
+       1px  1px 0 black;
+  }
+  
+  
+  /* Puedes usar esta clase para un texto de cuerpo más pequeño */
+  .home .body-text {
+    font-size: 1rem; /* letra más chica */
+    color: #ccc; /* blanco suave */
+    text-shadow:
+      -1px -1px 0 black,
+       1px -1px 0 black,
+      -1px  1px 0 black,
+       1px  1px 0 black;
+  }
+  .custom-link {
+    color: #ffcc00; /* color inicial del link (amarillo dorado) */
+    text-decoration: none; /* sin subrayado */
+    font-weight: bold;
+    transition: color 0.3s ease; /* transición suave al pasar el mouse */
+  }
+  
+  .custom-link:hover {
+    color: #ff6600; /* color cuando pasas el mouse por encima (naranja) */
+    text-decoration: underline; /* opcional */
+  }
+  

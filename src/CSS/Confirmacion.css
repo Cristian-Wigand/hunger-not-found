@@ -1,0 +1,56 @@
+.confirmacion-background {
+    min-height: 100vh;
+    background-image: url('/src/IMG/reserva.jpg'); /* Ajusta la ruta según tu proyecto */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  .confirmacion-card {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  .confirmacion-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333333;
+  }
+  
+  .text-green-600 {
+    color: #16a34a; /* verde */
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .text-red-600 {
+    color: #dc2626; /* rojo */
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .confirmacion-button {
+    background-color: #2563eb; /* azul */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .confirmacion-button:hover {
+    background-color: #1d4ed8;
+  }
+  

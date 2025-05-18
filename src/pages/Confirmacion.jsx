@@ -1,19 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import '../CSS/Confirmacion.css'
 
 const Confirmacion = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { success, error } = location.state || {};
+
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-green-50 px-4">
-      <h2 className="text-3xl font-bold text-green-700 mb-4">¡Reserva Confirmada! 🎉</h2>
-      <p className="text-gray-700 text-center mb-6 max-w-md">
-        Gracias por reservar con 404 Hunger Not Found. Te esperamos para tu próxima reunión profesional.
-      </p>
-      <Link
-        to="/"
-        className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold"
-      >
-        Volver al inicio
-      </Link>
+    <div className="confirmacion-background">
+      <div className="confirmacion-card">
+        <h2 className="confirmacion-title">Confirmación de Reserva</h2>
+        {success ? (
+          <p className="text-green-600">¡Reserva realizada con éxito!</p>
+        ) : (
+          <p className="text-red-600">Error: {error}</p>
+        )}
+        <button onClick={() => navigate("/")} className="confirmacion-button">
+          Volver al inicio
+        </button>
+      </div>
     </div>
   );
 };

@@ -7,21 +7,19 @@
 }
 
 body {
+  overflow-x: hidden;
   background-color: #f6f6f6;
   color: #333;
-  padding: 20px;
 }
 
-/* Contenedor general */
+/* Contenedor general
 div {
-  max-width: 600px;
   margin: auto;
-  padding: 20px;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
-
+*/
 /* Títulos */
 h1, h2 {
   margin-bottom: 20px;

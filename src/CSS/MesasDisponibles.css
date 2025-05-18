@@ -1,0 +1,120 @@
+.mesas-background {
+  min-height: 100vh;
+  background-image: url('/src/IMG/reserva.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título principal */
+.mesas-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #6b21a8;
+  text-align: center;
+  margin-bottom: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Contenedor flexible con wrap para las mesas */
+.mesas-lista {
+  width: 100%;
+  max-width: 900px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* permite que los elementos bajen a la siguiente fila */
+  gap: 1rem; /* espacio entre tarjetas */
+  justify-content: center; /* centra horizontalmente las mesas */
+}
+
+/* Cada mesa como una "tarjeta" fija */
+.mesa-item {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Tamaño fijo pero responsivo */
+  flex: 1 1 220px; /* crece y encoge, base 220px */
+  max-width: 220px;
+  min-width: 180px;
+}
+
+/* Botón de reserva */
+.mesa-button {
+  background-color: #6b21a8;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mesa-button:hover {
+  background-color: #410075;
+}
+.carrusel-paginado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 1rem;
+}
+
+.grupo-mesas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 1rem;
+  flex: 1;
+  max-width: 700px;
+}
+
+.carrusel-boton {
+  background-color: #6b21a8;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  height: fit-content;
+}
+
+.carrusel-boton:disabled {
+  background-color: #c4b5fd;
+  cursor: not-allowed;
+}
+
+.pagina-indicador {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #6b21a8;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+}
+.grupo-mesas.grupo-9 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 1rem;
+  flex: 1;
+  max-width: 900px;
+}

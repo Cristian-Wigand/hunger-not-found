@@ -9,10 +9,12 @@ import Register from "./pages/Register";
 import Reserva from "./pages/Reserva";
 import MesasDisponibles from "./pages/MesasDisponibles";
 import Confirmacion from "./pages/Confirmacion";
+import NavBar from "./pages/NavBar";
 
 function App() {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
